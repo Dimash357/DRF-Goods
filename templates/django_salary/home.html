@@ -1,0 +1,74 @@
+{% extends 'django_salary/components/base.html' %}
+{% load static %}
+{% block title %}ДОМАШНЯЯ{% endblock title %}
+{% block main %}
+
+<div class="container my-4">
+  <div class="row align-items-center">
+    <div class="col-md-6">
+      <h1 class="display-4">Название вашего приложения</h1>
+      <p class="lead">
+        Лучшее место для покупки качественных товаров по низким ценам
+      </p>
+      <a href="#" class="btn btn-primary btn-lg">Купить сейчас</a>
+    </div>
+    <div class="col-md-6">
+      <img
+        src="https://via.placeholder.com/600x400"
+        class="img-fluid rounded"
+        alt="Рекламный баннер"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="container my-5">
+  <h2 class="mb-4">Лучшие товары</h2>
+  <div
+    id="carouselExampleControls"
+    class="carousel slide"
+    data-bs-ride="carousel"
+  >
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="row">
+
+            {%  for category in categories %}
+
+                <div class="col-md-4">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                      <div class="card-header py-3">
+                          <a href="{% url 'category' category.slug %}" class="text-decoration-none text-dark">
+                            <h4 class="my-0 fw-normal">{{ category.name }}</h4>
+                          </a>
+                      </div>
+                      <div class="card-body">
+                        <img
+                          src="https://via.placeholder.com/300x200"
+                          class="img-fluid mb-3"
+                          alt="Товар 1"
+                        />
+                          <a href="{% url 'category' category.slug %}" class="w-100 btn btn-lg btn-primary">
+                            исследовать
+                            </a>
+                      </div>
+                    </div>
+                  </div>
+
+            {% empty %}
+                <div class="col-md-4">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                      <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal text-danger">Нет категорий!</h4>
+                      </div>
+                    </div>
+                  </div>
+            {% endfor %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock main %}

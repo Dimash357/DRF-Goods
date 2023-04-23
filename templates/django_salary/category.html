@@ -1,0 +1,35 @@
+{% extends 'django_salary/components/base.html' %}
+{% load static %}
+{% block title %} {{ name }} {% endblock title %}
+{% block main %}
+
+<main class="container mt-5">
+  <h1>Список товаров</h1>
+  <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+
+    {%  for tovar in tovars %}
+        <div class="col">
+          <div class="card h-100">
+            <img src="https://via.placeholder.com/400x300.png?text=Product+Image" class="card-img-top" alt="Product Image">
+            <div class="card-body">
+              <h5 class="card-title">{{ tovar.title }}</h5>
+              <p class="card-text">{{ tovar.description }}</p>
+              <p class="card-text">{{ tovar.price }} тг.</p>
+              <a href="#" class="btn btn-primary">Добавить в корзину</a>
+            </div>
+          </div>
+        </div>
+    {% empty %}
+        <div class="col">
+          <div class="card h-100">
+            <img src="https://via.placeholder.com/400x300.png?text=Product+Image" class="card-img-top" alt="Product Image">
+            <div class="card-body">
+              <h5 class="card-title text-danger">Нет товаров в категории!</h5>
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+
+  </div>
+</main>
+{% endblock main %}
